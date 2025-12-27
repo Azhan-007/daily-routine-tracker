@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Daily Routine Tracker - Health, Deen, and Studies">
+  <title>Daily Routine Tracker</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%234F46E5' width='180' height='180'/><text x='90' y='120' font-size='80' font-weight='bold' fill='white' text-anchor='middle'>✓</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%234F46E5' width='180' height='180'/><text x='90' y='120' font-size='80' font-weight='bold' fill='white' text-anchor='middle'>✓</text></svg>">
+  <meta name="theme-color" content="#4F46E5">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="app" class="app">
+    <!-- Header -->
+    <header class="header">
+      <h1>Daily Routine Tracker</h1>
+      <div class="header-info">
+        <span id="today-date" class="date"></span>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="nav-btn active" data-tab="dashboard">Dashboard</button>
+      <button class="nav-btn" data-tab="health">Health</button>
+      <button class="nav-btn" data-tab="deen">Deen</button>
+      <button class="nav-btn" data-tab="study">Study</button>
+    </nav>
+
+    <!-- Content Sections -->
+    <main class="content">
+      <!-- DASHBOARD TAB -->
+      <section id="dashboard" class="tab-content active">
+        <h2>Today's Progress</h2>
+        
+        <div class="progress-ring-container">
+          <svg class="progress-ring" viewBox="0 0 120 120">
+            <defs>
+              <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#34D399;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <circle class="progress-ring-circle" cx="60" cy="60" r="54" />
+          </svg>
+          <div class="progress-text">
+            <span id="progress-percentage" class="percentage">0%</span>
+            <span class="label">Complete</span>
+          </div>
+        </div>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h3>Health</h3>
+            <div id="health-summary" class="summary-items"></div>
+          </div>
+
+          <div class="summary-card">
+            <h3>Deen</h3>
+            <div id="deen-summary" class="summary-items"></div>
+          </div>
+
+          <div class="summary-card">
+            <h3>Study</h3>
+            <div id="study-summary" class="summary-items"></div>
+          </div>
+        </div>
+
+        <div class="streaks-container">
+          <h3>Streaks</h3>
+          <div id="streaks-list" class="streaks-list"></div>
+        </div>
+      </section>
+
+      <!-- HEALTH TAB -->
+      <section id="health" class="tab-content">
+        <h2>Health Tracker</h2>
+        
+        <div class="tracker-card">
+          <label class="checkbox-group">
+            <input type="checkbox" data-tracker="health" data-item="exercise">
+            <span class="checkbox-label">Exercise Today</span>
+          </label>
+          <small>30+ minutes of physical activity</small>
+        </div>
+
+        <div class="tracker-card">
+          <label>Water Intake</label>
+          <div class="input-group">
+            <button class="btn-small" id="water-decrease">−</button>
+            <input type="number" id="water-count" min="0" value="0" readonly>
+            <span>/ 8 glasses</span>
+            <button class="btn-small" id="water-increase">+</button>
+          </div>
+        </div>
+
+        <div class="tracker-card">
+          <label>Sleep Hours</label>
+          <input type="number" id="sleep-hours" min="0" max="24" step="0.5" placeholder="0 hours">
+          <small>Target: 7-8 hours</small>
+        </div>
+      </section>
+
+      <!-- DEEN TAB -->
+      <section id="deen" class="tab-content">
+        <h2>Deen Tracker</h2>
+        
+        <div class="tracker-card">
+          <h3>5 Daily Prayers</h3>
+          <div class="prayer-grid">
+            <label class="checkbox-group">
+              <input type="checkbox" data-tracker="deen" data-item="fajr">
+              <span class="checkbox-label">Fajr</span>
+            </label>
+            <label class="checkbox-group">
+              <input type="checkbox" data-tracker="deen" data-item="dhuhr">
+              <span class="checkbox-label">Dhuhr</span>
+            </label>
+            <label class="checkbox-group">
+              <input type="checkbox" data-tracker="deen" data-item="asr">
+              <span class="checkbox-label">Asr</span>
+            </label>
+            <label class="checkbox-group">
+              <input type="checkbox" data-tracker="deen" data-item="maghrib">
+              <span class="checkbox-label">Maghrib</span>
+            </label>
+            <label class="checkbox-group">
+              <input type="checkbox" data-tracker="deen" data-item="isha">
+              <span class="checkbox-label">Isha</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="tracker-card">
+          <label>Quran Reading (pages)</label>
+          <input type="number" id="quran-pages" min="0" placeholder="0 pages">
+        </div>
+
+        <div class="tracker-card">
+          <label>Zikr Counter</label>
+          <div class="counter-group">
+            <button class="btn-counter" id="zikr-decrease">−</button>
+            <span id="zikr-count" class="counter-display">0</span>
+            <button class="btn-counter" id="zikr-increase">+</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STUDY TAB -->
+      <section id="study" class="tab-content">
+        <h2>Study Tracker</h2>
+        
+        <div class="tracker-card">
+          <label>Daily Study Goal (hours)</label>
+          <input type="number" id="study-goal" min="0" step="0.5" placeholder="0 hours">
+        </div>
+
+        <div class="tracker-card">
+          <label>Study Time (hours)</label>
+          <input type="number" id="study-time" min="0" step="0.5" placeholder="0 hours">
+        </div>
+
+        <div class="tracker-card">
+          <h3>Study Timer</h3>
+          <div class="timer-container">
+            <div id="timer-display" class="timer-display">25:00</div>
+            <div class="timer-buttons">
+              <button class="btn-primary" id="timer-start">Start</button>
+              <button class="btn-secondary" id="timer-pause">Pause</button>
+              <button class="btn-secondary" id="timer-reset">Reset</button>
+            </div>
+            <div class="timer-presets">
+              <button class="btn-preset" data-minutes="25">25 min</button>
+              <button class="btn-preset" data-minutes="45">45 min</button>
+              <button class="btn-preset" data-minutes="60">60 min</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <small>Last updated: <span id="last-updated">Just now</span></small>
+      <button id="clear-data-btn" class="btn-small-text">Clear Data</button>
+    </footer>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

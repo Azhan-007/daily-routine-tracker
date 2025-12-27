@@ -1,0 +1,19 @@
+{
+  "name": "daily-routine-tracker-desktop",
+  "version": "1.0.0",
+  "description": "Desktop app for Daily Routine Tracker using Electron",
+  "main": "main.js",
+  "homepage": "./",
+  "scripts": {
+    "start": "electron .",
+    "dev": "concurrently \"npm start --prefix ../web\" \"electron .\"",
+    "build": "npm run build --prefix ../web"
+  },
+  "devDependencies": {
+    "electron": "^28.2.0",
+    "electron-is-dev": "^1.2.0",
+    "concurrently": "^7.6.0"
+  },
+  "author": "",
+  "license": "MIT"
+}
