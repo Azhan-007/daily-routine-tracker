@@ -1,0 +1,14 @@
+{
+	"appId": "com.dailyroutinetracke.app",
+	"appName": "Daily Routine Tracker",
+	"webDir": "web",
+	"bundledWebRuntime": false,
+	"server": {
+		"androidScheme": "https"
+	},
+	"plugins": {
+		"SplashScreen": {
+			"launchShowDuration": 3000
+		}
+	}
+}
